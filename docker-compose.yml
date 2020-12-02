@@ -1,0 +1,22 @@
+version: "3.8"
+
+services: 
+  web:
+    build: 
+      context: .
+      dockerfile: mydockerfile
+    image: "web:1.0"
+    ports: 
+      - "9090:8080"
+    depends_on: 
+      - mysql
+  mysql:
+    build: 
+      context: .
+      dockerfile: mysqldockerfile
+    image: "mysql:1.0"
+    restart: always
+    environment: 
+      MYSQL_ROOT_PASSWORD: 123456
+    volumes: 
+      - "/root/web/mysqldata:/var/lib/mysql"

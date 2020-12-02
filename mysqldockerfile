@@ -1,0 +1,10 @@
+FROM mysql:latest
+MAINTAINER cao<996389570@qq.com>
+
+ENV AUTO_RUN_DIR /docker-entrypoint-initdb.d
+
+ENV INSRALL_DB_SQL ./smbms.sql 
+
+COPY ./$INSRALL_DB_SQL $AUTO_RUN_DIR/
+
+RUN chmod a+x $AUTO_RUN_DIR/$INSTALL_DB_SQL
